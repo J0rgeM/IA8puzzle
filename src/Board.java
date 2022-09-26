@@ -1,3 +1,5 @@
+import java.util.List;
+
 interface Ilayout {
     /**
      @return the children of the receiver.
@@ -35,4 +37,20 @@ interface Ilayout {
     public int hashCode() {
 // TO BE COMPLETED
     }
+    @Override
+    public List<Ilayout> children() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public boolean isGoal(Ilayout l) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    @Override
+    public double getG() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 //… TO BE COMPLETED
+}
