@@ -2,7 +2,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
 public class PuzzleUnitTests {
     @Test
     public void testConstructor() {
@@ -12,7 +11,7 @@ public class PuzzleUnitTests {
         pw.println(" 23");
         pw.println("145");
         pw.println("678");
-        assertEquals(writer.toString(), b.toString());
+        assertEquals(b.toString(), writer.toString());
         pw.close();
     }
     @Test

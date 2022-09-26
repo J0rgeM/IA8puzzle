@@ -34,7 +34,7 @@ interface Ilayout {
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
                 if (board[i][j] == 0) a += " ";
-                else a += Integer.toString(board[i][j].getId()); 
+                else a += Integer.toString(board[i][j]); 
             }
             a += "\n";
         }
