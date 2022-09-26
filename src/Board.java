@@ -42,9 +42,11 @@ interface Ilayout {
     }
     public boolean equals(Object o) {
 // TO BE COMPLETED
+        return false;
     }
     public int hashCode() {
 // TO BE COMPLETED
+        return 0;
     }
     @Override
     public List<Ilayout> children() {
