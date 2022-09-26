@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="868f9441-ce9d-4662-b61a-81a96893a9e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/junit-platform-console-standalone-1.9.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="868f9441-ce9d-4662-b61a-81a96893a9e9" name="Changes" comment="fds">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PuzzleUnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PuzzleUnitTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/putinhas.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +57,29 @@
       <option name="presentableId" value="Default" />
       <updated>1663768902573</updated>
     </task>
+    <task id="LOCAL-00001" summary="fds">
+      <created>1664189217439</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664189217439</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fds" />
+    <option name="LAST_COMMIT_MESSAGE" value="fds" />
   </component>
 </project>

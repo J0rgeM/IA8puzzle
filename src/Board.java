@@ -28,8 +28,17 @@ interface Ilayout {
             for(int j=0; j<dim; j++)
                 board[i][j] = Character.getNumericValue(str.charAt(si++));
     }
+    
     public String toString() {
-// TO BE COMPLETED
+        String a = new String();
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                if (board[i][j] == 0) a += " ";
+                else a += Integer.toString(board[i][j].getId()); 
+            }
+            a += "\n";
+        }
+        return a;
     }
     public boolean equals(Object o) {
 // TO BE COMPLETED
