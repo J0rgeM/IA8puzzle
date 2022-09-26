@@ -36,7 +36,7 @@ interface Ilayout {
                 if (board[i][j] == 0) a += " ";
                 else a += Integer.toString(board[i][j]); 
             }
-            a += "\n";
+            a += "\r\n";
         }
         return a;
     }
