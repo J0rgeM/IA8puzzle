@@ -63,10 +63,18 @@ class BestFirst {
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
         objective = goal;
         abertos = new PriorityQueue<>(10, (s1, s2) -> (int) Math.signum(s1.getG() - s2.getG()));
-
         fechados = new HashMap<>();
+
         abertos.add(new State(s, null));
-        List<State> sucs;
+        List<State> sucs = new ArrayList<State>(); // inicializei em arraylist
+        while (!s.equals(objective)){ // objetivo é um loop até que se encontre a solução, isto foi so para ter ai qq coisa
+
+            if (abertos.isEmpty())
+                s.add(abertos.peek()); // peek é para ficar com cabecilha, o primeiro cabrao
+                abertos.remove();
+
+
+        }
         // TO BE COMPLETED
 
     }

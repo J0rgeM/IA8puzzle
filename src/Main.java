@@ -4,9 +4,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-        BestFirst s = new BestFirst();
-        Iterator<BestFirst.State> it = s.solve(new Board(sc.next()),
-                new Board(sc.next()));
+        BestFirst alg = new BestFirst();
+        Iterator<BestFirst.State> it = alg.solve(new Board(sc.next()), new Board(sc.next()));
         if (it == null) System.out.println("no solution found");
         else {
             while (it.hasNext()) {
