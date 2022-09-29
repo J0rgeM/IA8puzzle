@@ -38,7 +38,7 @@ class BestFirst {
             if (this.getClass() != o.getClass())
                 return false;
             State n = (State) o;
-            return this.state.equals(n.state);
+            return this.layout.equals(n.layout);
         }
     }
 

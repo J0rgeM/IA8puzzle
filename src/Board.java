@@ -49,11 +49,7 @@ class Board implements Ilayout, Cloneable {
         return a;
     }
 
-    public boolean equals(Object o) {
-        if (this.board.toString().compareTo(o.toString()) == 0)
-            return true;
-        return false;
-    }
+    public boolean equals(Object o) { return this.toString().equals(o.toString()); }
 
     public int hashCode() {
         // TO BE COMPLETED
