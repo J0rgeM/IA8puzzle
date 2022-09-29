@@ -41,7 +41,8 @@ interface Ilayout {
         return a;
     }
     public boolean equals(Object o) {
-// TO BE COMPLETED
+        if (this.board.toString() == o.toString())
+            return true;
         return false;
     }
     public int hashCode() {
@@ -56,7 +57,7 @@ interface Ilayout {
     @Override
     public boolean isGoal(Ilayout l) {
         // TODO Auto-generated method stub
-        return false;
+        return equals(l);
     }
     @Override
     public double getG() {

@@ -2,16 +2,20 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+
 public class PuzzleUnitTests {
     @Test
     public void testConstructor() {
         Board b = new Board("023145678");
+        Board c = new Board("023145678");
         StringWriter writer = new StringWriter();
         PrintWriter pw = new PrintWriter ( writer ) ;
         pw.println(" 23");
         pw.println("145");
         pw.println("678");
         assertEquals(b.toString(), writer.toString());
+        assertTrue(b.equals(c));
+        assertTrue(b.isGoal(c));
         pw.close();
     }
     @Test

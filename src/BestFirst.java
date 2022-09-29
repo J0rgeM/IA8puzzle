@@ -67,12 +67,12 @@ class BestFirst {
 
         abertos.add(new State(s, null));
         List<State> sucs; // inicializei em list
-        while (s.isGoal()){ // objetivo e um loop ate que se encontre a solução, isto foi so para ter ai qq coisa
+        while (s.isGoal(goal)){ // objetivo e um loop ate que se encontre a solução, isto foi so para ter ai qq coisa
             if (abertos.isEmpty() || abertos == null) // nao percebi bem oq e com fracasso
                 State actual = State(abertos.peek(), abertos.children()); //
                 abertos.remove();
             if (s.equals(goal)) {
-                s.isGoal() = true;
+
             }
             else{
                 sucs = sucessores(actual);
