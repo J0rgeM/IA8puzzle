@@ -26,17 +26,11 @@ class BestFirst {
                 g = 0.0;
         }
 
-        public String toString() {
-            return layout.toString();
-        }
+        public String toString() { return layout.toString(); }
 
-        public double getG() {
-            return g;
-        }
+        public double getG() { return g; }
 
-        public int hashCode() {
-            return toString().hashCode();
-        }
+        public int hashCode() { return toString().hashCode(); }
 
         public boolean equals(Object o) {
             if (o == null)
