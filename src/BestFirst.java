@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 
 class BestFirst {
     protected Queue<State> abertos;
@@ -54,6 +55,7 @@ class BestFirst {
         return sucs;
     }
 
+    @SuppressWarnings("unchecked")
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
         objective = goal;
         abertos = new PriorityQueue<>(10, (s1, s2) -> (int) Math.signum(s1.getG() - s2.getG()));
@@ -63,24 +65,25 @@ class BestFirst {
         State temp;
         Stack<Ilayout> stack = new Stack<>();
 
-        while () {
+        while (true) {
             if (abertos.isEmpty()) {
                 System.out.println("No solution has been found");
                 return null;
             }
             actual = abertos.remove();
-            if (actual.equals(objective)) //mostrar sequencia TO DO
+            if (actual.layout.equals(objective)) {
                 temp = actual;
                 while (temp.father != null) {
                     stack.push(temp.layout);
+                    temp = temp.father;
                 }
-                return;
-            else {
-                sucs = actual.sucessores();
-                fechados.add(actual);
-                for (State child : sucs) {
-                    if (!fechados.contains(child)) abertos.add(new State(child, actual));
-                }
+                stack.push(temp.layout);
+                return stack.iterator();
+            } else {
+                sucs = sucessores(actual);
+                fechados.put(actual.layout, actual.father);
+                for (State child : sucs)
+                    if (!fechados.containsKey(child.layout)) abertos.add(new State(child.layout, actual));
             }
         }
 
