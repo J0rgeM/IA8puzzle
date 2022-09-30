@@ -51,10 +51,7 @@ class Board implements Ilayout, Cloneable {
 
     public boolean equals(Object o) { return this.toString().equals(o.toString()); }
 
-    public int hashCode() {
-        // TO BE COMPLETED
-        return 0;
-    }
+    public int hashCode() { return this.hashCode(); }
 
     @Override
     public List<Ilayout> children() {
@@ -105,14 +102,8 @@ class Board implements Ilayout, Cloneable {
     }
 
     @Override
-    public boolean isGoal(Ilayout l) {
-        return this.equals(l);
-    }
+    public boolean isGoal(Ilayout l) { return this.equals(l); }
 
     @Override
-    public double getG() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    // … TO BE COMPLETED
+    public double getG() { return 1; }
 }

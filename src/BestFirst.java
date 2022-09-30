@@ -58,10 +58,35 @@ class BestFirst {
         objective = goal;
         abertos = new PriorityQueue<>(10, (s1, s2) -> (int) Math.signum(s1.getG() - s2.getG()));
         fechados = new HashMap<>();
-
         abertos.add(new State(s, null));
+        List<State> sucs;
+        State temp;
+        Stack<Ilayout> stack = new Stack<>();
+
+        while () {
+            if (abertos.isEmpty()) {
+                System.out.println("No solution has been found");
+                return null;
+            }
+            actual = abertos.remove();
+            if (actual.equals(objective)) //mostrar sequencia TO DO
+                temp = actual;
+                while (temp.father != null) {
+                    stack.push(temp.layout);
+                }
+                return;
+            else {
+                sucs = actual.sucessores();
+                fechados.add(actual);
+                for (State child : sucs) {
+                    if (!fechados.contains(child)) abertos.add(new State(child, actual));
+                }
+            }
+        }
+
+       /*  abertos.add(new State(s, null));
         List<State> sucs; // inicializei em list
-        while (s.isGoal(goal)){ // objetivo e um loop ate que se encontre a solução, isto foi so para ter ai qq coisa
+        while (s.isGoal(goal)) { // objetivo e um loop ate que se encontre a solução, isto foi so para ter ai qq coisa
             if (abertos.isEmpty() || abertos == null) // nao percebi bem oq e com fracasso
                 State actual = State(abertos.peek(), abertos.children()); //
                 abertos.remove();
@@ -78,6 +103,6 @@ class BestFirst {
                     }
             }
             s.getG()++;
-        }
+        } */
     }
 }
