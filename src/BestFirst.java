@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Stack;
 
 class BestFirst {
     protected Queue<State> abertos;
@@ -83,13 +82,14 @@ class BestFirst {
                 }
                 list.add(actual);
                 break;
-                
+
             }
             sucs = sucessores(actual);
             fechados.put(actual.layout, actual);
             for (State child : sucs)
-                if (!fechados.containsValue(child)) abertos.add(child);
-            }
+                if (!fechados.containsValue(child))
+                    abertos.add(child);
+        }
         Collections.reverse(list);
         return list.iterator();
     }
