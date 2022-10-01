@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -61,15 +62,13 @@ class BestFirst {
         return sucs;
     }
 
-    @SuppressWarnings("unchecked")
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
         objective = goal;
         abertos = new PriorityQueue<>(10, (s1, s2) -> (int) Math.signum(s1.getG() - s2.getG()));
         fechados = new HashMap<>();
         abertos.add(new State(s, null));
         List<State> sucs;
-        State temp;
-        Stack<State> stack = new Stack<>();
+        List<State> list = new ArrayList<>();
 
         while (true) {
             if (abertos.isEmpty()) {
@@ -78,43 +77,20 @@ class BestFirst {
             }
             actual = abertos.remove();
             if (actual.layout.equals(objective)) {
-                temp = actual;
-                while (temp.father != null) {
-                    System.out.println(temp.toString());
-                    stack.push(temp);
-                    temp = temp.father;
+                while (actual.father != null) {
+                    list.add(actual);
+                    actual = actual.father;
                 }
-                stack.push(temp);
+                list.add(actual);
                 break;
                 
             }
-            else {
-                sucs = sucessores(actual);
-                fechados.put(actual.layout, actual.father);
-                for (State child : sucs)
-                if (!fechados.containsKey(child.layout)) abertos.add(new State(child.layout, actual));
+            sucs = sucessores(actual);
+            fechados.put(actual.layout, actual);
+            for (State child : sucs)
+                if (!fechados.containsValue(child)) abertos.add(child);
             }
-        }
-        return stack.iterator();
+        Collections.reverse(list);
+        return list.iterator();
     }
 }
-       /*  abertos.add(new State(s, null));
-        List<State> sucs; // inicializei em list
-        while (s.isGoal(goal)) { // objetivo e um loop ate que se encontre a solução, isto foi so para ter ai qq coisa
-            if (abertos.isEmpty() || abertos == null) // nao percebi bem oq e com fracasso
-                State actual = State(abertos.peek(), abertos.children()); //
-                abertos.remove();
-            if (s.equals(goal)) {
-
-            }
-            else{
-                sucs = sucessores(actual);
-                fechados.add(actual);
-                for (state sucessor : sucs) 
-                    { 
-                        if (fechados.Contains(sucessor));
-                            abertos.add(sucessor);
-                    }
-            }
-            s.getG()++;
-        } */

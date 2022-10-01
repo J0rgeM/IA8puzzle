@@ -1,23 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-interface Ilayout {
-    /**
-     * @return the children of the receiver.
-     */
-    List<Ilayout> children();
-
-    /**
-     * @return true if the receiver equals the argument l;
-     *         return false otherwise.
-     */
-    boolean isGoal(Ilayout l);
-
-    /**
-     * @return the cost for moving from the input config to the receiver.
-     */
-    double getG();
-}
 
 class Board implements Ilayout, Cloneable {
     private static final int dim = 3;
@@ -36,63 +19,70 @@ class Board implements Ilayout, Cloneable {
     }
 
     public String toString() {
-        String a = "";
+        String a = new String();
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
                 if (board[i][j] == 0)
                     a += " ";
                 else
-                    a += Integer.toString(board[i][j]);
+                    a+=String.valueOf(board[i][j]);
             }
-            a += "\r\n";
+            a += "\n";
         }
         return a;
     }
 
     public boolean equals(Object o) { return this.toString().equals(o.toString()); }
 
-    public int hashCode() { return this.hashCode(); }
+    public int hashCode() { 
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.deepHashCode(board);
+        return result; 
+    }
+
+    public char[] CharArray() {  
+        // Cannot use Arrays.copyOf because of class initialization order issues  
+    char[] ch=this.toString().toCharArray();  
+    char[] temp = new char[9];
+    int useful = 0;
+    for(int i=0;i<ch.length;i++){
+        if ( '\n' != ch[i] && '\r' != ch[i])  
+            temp[useful++] = ch[i];
+        }
+    return temp;
+    }  
 
     @Override
     public List<Ilayout> children() {
-        List<Ilayout> children = new ArrayList<Ilayout>();
-        Board temp;
+        List<Ilayout> children = new ArrayList<>();
         char[] a;
-        char b;
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
                 if (board[i][j] == 0) {
-                    if (i-1 > 0) {
-                        a = this.toString().toCharArray();
-                        b = a[i*dim + j];
+                    if (i-1 >= 0) {
+                        a = this.CharArray();
                         a[i*dim + j] = a[i*dim + j - dim];
-                        a[i*dim + j - dim] = b;
-                        temp = new Board(String.valueOf(a));
-                        children.add(temp);
+                        a[i*dim + j - dim] = '0';
+                        children.add(new Board(String.valueOf(a)));
                     }
                     if (i+1 < dim) {
-                        a = this.toString().toCharArray();
-                        b = a[i*dim + j];
+                        a = this.CharArray();
                         a[i*dim + j] = a[i*dim + j + dim];
-                        a[i*dim + j + dim] = b;
-                        temp = new Board(String.valueOf(a));
-                        children.add(temp);
+                        a[i*dim + j + dim] = '0';
+                        children.add(new Board(String.valueOf(a)));
                     }
-                    if (j-1 > 0) {
-                        a = this.toString().toCharArray();
-                        b = a[i*dim + j];
+                    if (j-1 >= 0) {
+                        a = this.CharArray();
                         a[i*dim + j] = a[i*dim + j - 1];
-                        a[i*dim + j - 1] = b;
-                        temp = new Board(String.valueOf(a));
-                        children.add(temp);
+                        a[i*dim + j - 1] = '0';
+                        children.add(new Board(String.valueOf(a)));
                     }
                     if (j+1 < dim) {
-                        a = this.toString().toCharArray();
-                        b = a[i*dim + j];
+                        a = this.CharArray();
                         a[i*dim + j] = a[i*dim + j + 1];
-                        a[i*dim + j + 1] = b;
-                        temp = new Board(String.valueOf(a));
-                        children.add(temp);
+                        a[i*dim + j + 1] = '0';
+                        children.add(new Board(String.valueOf(a)));
                     }
                     return children;
                 }
