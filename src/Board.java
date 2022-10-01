@@ -74,25 +74,25 @@ class Board implements Ilayout, Cloneable {
             for (int j = 0; j < dim; j++) {
                 if (board[i][j] == 0) {
                     if (i-1 >= 0) {
-                        a = this.CharArray();
+                        a = this.toStringv2().toCharArray();
                         a[i*dim + j] = a[i*dim + j - dim];
                         a[i*dim + j - dim] = '0';
                         children.add(new Board(String.valueOf(a)));
                     }
                     if (i+1 < dim) {
-                        a = this.CharArray();
+                        a = this.toStringv2().toCharArray();
                         a[i*dim + j] = a[i*dim + j + dim];
                         a[i*dim + j + dim] = '0';
                         children.add(new Board(String.valueOf(a)));
                     }
                     if (j-1 >= 0) {
-                        a = this.CharArray();
+                        a = this.toStringv2().toCharArray();
                         a[i*dim + j] = a[i*dim + j - 1];
                         a[i*dim + j - 1] = '0';
                         children.add(new Board(String.valueOf(a)));
                     }
                     if (j+1 < dim) {
-                        a = this.CharArray();
+                        a = this.toStringv2().toCharArray();
                         a[i*dim + j] = a[i*dim + j + 1];
                         a[i*dim + j + 1] = '0';
                         children.add(new Board(String.valueOf(a)));
