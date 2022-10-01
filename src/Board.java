@@ -6,7 +6,9 @@ class Board implements Ilayout, Cloneable {
     private static final int dim = 3;
     private int board[][];
 
-    public Board() { board = new int[dim][dim]; }
+    public Board() {
+        board = new int[dim][dim];
+    }
 
     public Board(String str) throws IllegalStateException {
         if (str.length() != dim * dim)
@@ -25,46 +27,31 @@ class Board implements Ilayout, Cloneable {
                 if (board[i][j] == 0)
                     a += " ";
                 else
-                    a+=String.valueOf(board[i][j]);
+                    a += String.valueOf(board[i][j]);
             }
             a += "\n";
         }
         return a;
     }
 
-    public String toStringv2() {
-        String a = new String();
-        for (int i = 0; i < dim; i++) {
-            for (int j = 0; j < dim; j++) {
-                if (board[i][j] == 0)
-                    a += " ";
-                else
-                    a+=String.valueOf(board[i][j]);
-            }
-        }
+    public char[] toChar() {
+        char[] a = new char[9];
+        for (int i = 0; i < dim; i++)
+            for (int j = 0; j < dim; j++)
+                a[i * 3 + j] = (char)(board[i][j] + '0');
         return a;
     }
 
-    public boolean equals(Object o) { return this.toString().equals(o.toString()); }
+    public boolean equals(Object o) {
+        return this.toString().equals(o.toString());
+    }
 
-    public int hashCode() { 
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + Arrays.deepHashCode(board);
-        return result; 
+        return result;
     }
-
-    public char[] CharArray() {  
-        // Cannot use Arrays.copyOf because of class initialization order issues  
-    char[] ch=this.toString().toCharArray();  
-    char[] temp = new char[9];
-    int useful = 0;
-    for(int i=0;i<ch.length;i++){
-        if ( '\n' != ch[i])
-            temp[useful++] = ch[i];
-        }
-    return temp;
-    }  
 
     @Override
     public List<Ilayout> children() {
@@ -73,28 +60,28 @@ class Board implements Ilayout, Cloneable {
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
                 if (board[i][j] == 0) {
-                    if (i-1 >= 0) {
-                        a = this.toStringv2().toCharArray();
-                        a[i*dim + j] = a[i*dim + j - dim];
-                        a[i*dim + j - dim] = '0';
+                    if (i - 1 >= 0) {
+                        a = this.toChar();
+                        a[i * dim + j] = a[i * dim + j - dim];
+                        a[i * dim + j - dim] = '0';
                         children.add(new Board(String.valueOf(a)));
                     }
-                    if (i+1 < dim) {
-                        a = this.toStringv2().toCharArray();
-                        a[i*dim + j] = a[i*dim + j + dim];
-                        a[i*dim + j + dim] = '0';
+                    if (i + 1 < dim) {
+                        a = this.toChar();
+                        a[i * dim + j] = a[i * dim + j + dim];
+                        a[i * dim + j + dim] = '0';
                         children.add(new Board(String.valueOf(a)));
                     }
-                    if (j-1 >= 0) {
-                        a = this.toStringv2().toCharArray();
-                        a[i*dim + j] = a[i*dim + j - 1];
-                        a[i*dim + j - 1] = '0';
+                    if (j - 1 >= 0) {
+                        a = this.toChar();
+                        a[i * dim + j] = a[i * dim + j - 1];
+                        a[i * dim + j - 1] = '0';
                         children.add(new Board(String.valueOf(a)));
                     }
-                    if (j+1 < dim) {
-                        a = this.toStringv2().toCharArray();
-                        a[i*dim + j] = a[i*dim + j + 1];
-                        a[i*dim + j + 1] = '0';
+                    if (j + 1 < dim) {
+                        a = this.toChar();
+                        a[i * dim + j] = a[i * dim + j + 1];
+                        a[i * dim + j + 1] = '0';
                         children.add(new Board(String.valueOf(a)));
                     }
                     return children;
@@ -105,8 +92,12 @@ class Board implements Ilayout, Cloneable {
     }
 
     @Override
-    public boolean isGoal(Ilayout l) { return this.equals(l); }
+    public boolean isGoal(Ilayout l) {
+        return this.equals(l);
+    }
 
     @Override
-    public double getG() { return 1; }
+    public double getG() {
+        return 1;
+    }
 }
