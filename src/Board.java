@@ -36,7 +36,7 @@ class Board implements Ilayout, Cloneable {
     }
 
     public String toString() {
-        String a = new String();
+        String a = "";
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
                 if (board[i][j] == 0)

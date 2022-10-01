@@ -27,11 +27,17 @@ class BestFirst {
                 g = 0.0;
         }
 
-        public String toString() { return layout.toString(); }
+        public String toString() {
+            return layout.toString();
+        }
 
-        public double getG() { return g; }
+        public double getG() {
+            return g;
+        }
 
-        public int hashCode() { return toString().hashCode(); }
+        public int hashCode() {
+            return toString().hashCode();
+        }
 
         public boolean equals(Object o) {
             if (o == null)
@@ -63,7 +69,7 @@ class BestFirst {
         abertos.add(new State(s, null));
         List<State> sucs;
         State temp;
-        Stack<Ilayout> stack = new Stack<>();
+        Stack<State> stack = new Stack<>();
 
         while (true) {
             if (abertos.isEmpty()) {
@@ -74,19 +80,24 @@ class BestFirst {
             if (actual.layout.equals(objective)) {
                 temp = actual;
                 while (temp.father != null) {
-                    stack.push(temp.layout);
+                    System.out.println(temp.toString());
+                    stack.push(temp);
                     temp = temp.father;
                 }
-                stack.push(temp.layout);
-                return stack.iterator();
-            } else {
+                stack.push(temp);
+                break;
+                
+            }
+            else {
                 sucs = sucessores(actual);
                 fechados.put(actual.layout, actual.father);
                 for (State child : sucs)
-                    if (!fechados.containsKey(child.layout)) abertos.add(new State(child.layout, actual));
+                if (!fechados.containsKey(child.layout)) abertos.add(new State(child.layout, actual));
             }
         }
-
+        return stack.iterator();
+    }
+}
        /*  abertos.add(new State(s, null));
         List<State> sucs; // inicializei em list
         while (s.isGoal(goal)) { // objetivo e um loop ate que se encontre a solução, isto foi so para ter ai qq coisa
@@ -107,5 +118,3 @@ class BestFirst {
             }
             s.getG()++;
         } */
-    }
-}
