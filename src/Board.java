@@ -32,6 +32,19 @@ class Board implements Ilayout, Cloneable {
         return a;
     }
 
+    public String toStringv2() {
+        String a = new String();
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                if (board[i][j] == 0)
+                    a += " ";
+                else
+                    a+=String.valueOf(board[i][j]);
+            }
+        }
+        return a;
+    }
+
     public boolean equals(Object o) { return this.toString().equals(o.toString()); }
 
     public int hashCode() { 
@@ -47,7 +60,7 @@ class Board implements Ilayout, Cloneable {
     char[] temp = new char[9];
     int useful = 0;
     for(int i=0;i<ch.length;i++){
-        if ( '\n' != ch[i] && '\r' != ch[i])  
+        if ( '\n' != ch[i])
             temp[useful++] = ch[i];
         }
     return temp;
