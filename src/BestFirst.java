@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -67,7 +68,7 @@ class BestFirst {
         fechados = new HashMap<>();
         abertos.add(new State(s, null));
         List<State> sucs;
-        List<State> list = new ArrayList<>();
+        LinkedList<State> list = new LinkedList<>();
 
         while (true) {
             if (abertos.isEmpty()) {
@@ -77,10 +78,10 @@ class BestFirst {
             actual = abertos.remove();
             if (actual.layout.equals(objective)) {
                 while (actual.father != null) {
-                    list.add(actual);
+                    list.addFirst(actual);
                     actual = actual.father;
                 }
-                list.add(actual);
+                list.addFirst(actual);
                 break;
 
             }
@@ -90,7 +91,6 @@ class BestFirst {
                 if (!fechados.containsValue(child))
                     abertos.add(child);
         }
-        Collections.reverse(list);
         return list.iterator();
     }
 }
