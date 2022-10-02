@@ -6,7 +6,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         BestFirst alg = new BestFirst();
         Iterator<BestFirst.State> it = alg.solve(new Board(sc.next()), new Board(sc.next()));
-        if (it == null) System.out.println("no solution found");
+        if (it == null) System.out.println("No solution found");
         else {
             while (it.hasNext()) {
                 BestFirst.State i = it.next();

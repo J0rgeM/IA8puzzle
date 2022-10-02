@@ -82,8 +82,7 @@ class BestFirst {
                     actual = actual.father;
                 }
                 list.addFirst(actual);
-                break;
-
+                return list.iterator();
             }
             sucs = sucessores(actual);
             fechados.put(actual.layout, actual);
@@ -91,6 +90,5 @@ class BestFirst {
                 if (!fechados.containsValue(child))
                     abertos.add(child);
         }
-        return list.iterator();
     }
 }

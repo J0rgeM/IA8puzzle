@@ -5,6 +5,7 @@ import java.util.List;
 class Board implements Ilayout, Cloneable {
     private static final int dim = 3;
     private int board[][];
+    private int zeroI, zeroJ;
 
     public Board() {
         board = new int[dim][dim];
@@ -43,7 +44,12 @@ class Board implements Ilayout, Cloneable {
     }
 
     public boolean equals(Object o) {
-        return this.toString().equals(o.toString());
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                if (this.board[i][j] != ((Board) o).board[i][j]) return false;
+            }
+        }
+        return true;
     }
 
     public int hashCode() {
@@ -53,42 +59,48 @@ class Board implements Ilayout, Cloneable {
         return result;
     }
 
-    @Override
-    public List<Ilayout> children() {
-        List<Ilayout> children = new ArrayList<>();
-        char[] a;
+    public Board clone() {
+        Board clone = new Board();
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
-                if (board[i][j] == 0) {
-                    if (i - 1 >= 0) {
-                        a = this.toChar();
-                        a[i * dim + j] = a[i * dim + j - dim];
-                        a[i * dim + j - dim] = '0';
-                        children.add(new Board(String.valueOf(a)));
-                    }
-                    if (i + 1 < dim) {
-                        a = this.toChar();
-                        a[i * dim + j] = a[i * dim + j + dim];
-                        a[i * dim + j + dim] = '0';
-                        children.add(new Board(String.valueOf(a)));
-                    }
-                    if (j - 1 >= 0) {
-                        a = this.toChar();
-                        a[i * dim + j] = a[i * dim + j - 1];
-                        a[i * dim + j - 1] = '0';
-                        children.add(new Board(String.valueOf(a)));
-                    }
-                    if (j + 1 < dim) {
-                        a = this.toChar();
-                        a[i * dim + j] = a[i * dim + j + 1];
-                        a[i * dim + j + 1] = '0';
-                        children.add(new Board(String.valueOf(a)));
-                    }
-                    return children;
+                clone.board[i][j] = this.board[i][j];
+                if (this.board[i][j] == 0) {
+                    zeroI = i;
+                    zeroJ = j;
                 }
             }
         }
-        return null;
+        return clone;
+    }
+
+    @Override
+    public List<Ilayout> children() {
+        List<Ilayout> children = new ArrayList<>();
+        Board clone = this.clone();
+        if (this.zeroI - 1 >= 0) {
+            clone.board[this.zeroI][this.zeroJ] = clone.board[this.zeroI - 1][this.zeroJ];
+            clone.board[this.zeroI - 1][this.zeroJ] = 0;
+            children.add(clone);
+        }
+        if (this.zeroI + 1 < dim) {
+            clone = this.clone();
+            clone.board[this.zeroI][this.zeroJ] = clone.board[this.zeroI + 1][this.zeroJ];
+            clone.board[this.zeroI + 1][this.zeroJ] = 0;
+            children.add(clone);
+        }
+        if (this.zeroJ - 1 >= 0) {
+            clone = this.clone();
+            clone.board[this.zeroI][this.zeroJ] = clone.board[this.zeroI][this.zeroJ - 1];
+            clone.board[this.zeroI][this.zeroJ - 1] = 0;
+            children.add(clone);
+        }
+        if (this.zeroJ + 1 < dim) {
+            clone = this.clone();
+            clone.board[this.zeroI][this.zeroJ] = clone.board[this.zeroI][this.zeroJ + 1];
+            clone.board[this.zeroI][this.zeroJ + 1] = 0;
+            children.add(clone);
+        }
+        return children;
     }
 
     @Override
